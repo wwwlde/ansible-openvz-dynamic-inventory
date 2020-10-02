@@ -27,7 +27,7 @@ def get_guests():
         for j in json_data:
             if j['status'] == 'running':
                 # Get IP address only from private network range
-                ip = [ip for ip in j['ip'] if ip.startswith('192.168')]
+                ip = [ip for ip in j['ip'] if ip.startswith('192.168')][0]
                 # Add information to host vars
                 inventory['_meta']['hostvars'][j['hostname']] = {'ctid': j['ctid'], 'private_path': j['private'], 'root_path': j['root'], 'ansible_host': ip, 'hn': h}
 
